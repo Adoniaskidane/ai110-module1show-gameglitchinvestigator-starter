@@ -10,15 +10,15 @@
 
 **What task did you give the agent?**
 
-<!-- Describe the goal you asked the agent to accomplish -->
+I asked Copilot to help debug the guessing game, refactor the game logic out of the UI, and guide me through fixing the incorrect higher/lower messages, invalid input handling, and attempt-counter logic.
 
 **What did the agent do?**
 
-<!-- List the steps the agent took (files edited, commands run, etc.) -->
+Copilot inspected the game logic and the Streamlit app, explained the root causes in `app.py`, and guided me toward moving the pure logic into `logic_utils.py`. It also helped identify the string-input bug and the issue where attempts were being counted before validation. I then implemented the refactor and added a regression test for invalid input.
 
 **What did you have to verify or fix manually?**
 
-<!-- Describe anything the agent got wrong or that required human review -->
+I verified that the fixes matched the actual code in `logic_utils.py` and `app.py`, and I confirmed the refactor with the project tests. The main manual checks were making sure the logic stayed in the utility file, invalid strings were rejected before counting attempts, and the tests still passed after the refactor.
 
 ---
 
@@ -28,9 +28,9 @@
 
 | Edge Case | Prompt Used | AI-Suggested Test | Did It Pass? | Your Reasoning |
 |-----------|-------------|-------------------|--------------|----------------|
-| | | | | |
-| | | | | |
-| | | | | |
+| Invalid string input | "Add a pytest case for a non-numeric guess such as 'abc' to ensure it is rejected cleanly." | `test_parse_guess_rejects_non_numeric_string` | Yes | This covers the bug where invalid text was allowed to reach the game flow and could interfere with attempt counting and game state. |
+| Winning guess | "Add a test that verifies a correct guess returns 'Win'." | `test_winning_guess` | Yes | This confirms the refactored logic still recognizes a correct match after moving it into `logic_utils.py`. |
+| Higher and lower comparison | "Add tests for guesses above and below the secret." | `test_guess_too_high`, `test_guess_too_low` | Yes | These validate the corrected comparison logic and ensure the hint direction matches the actual value. |
 
 ---
 
