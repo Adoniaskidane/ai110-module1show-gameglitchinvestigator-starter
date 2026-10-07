@@ -14,41 +14,44 @@ It wrote the code, ran away, and now the game is unplayable.
 1. Install dependencies: `pip install -r requirements.txt`
 2. Run the broken app: `python -m streamlit run app.py`
 
-## 🕵️‍♂️ Your Mission
+## 🕵️‍♂️ What we fixed
 
-1. **Play the game.** Open the "Developer Debug Info" tab in the app to see the secret number. Try to win.
-2. **Find the State Bug.** Why does the secret number change every time you click "Submit"? Ask ChatGPT: *"How do I keep a variable from resetting in Streamlit when I click a button?"*
-3. **Fix the Logic.** The hints ("Higher/Lower") are wrong. Fix them.
-4. **Refactor & Test.** - Move the logic into `logic_utils.py`.
-   - Run `pytest` in your terminal.
-   - Keep fixing until all tests pass!
+1. **Refactored the game logic.** We moved the pure functions into `logic_utils.py` so the UI and the game rules are separated cleanly.
+2. **Fixed the broken hints.** The comparison logic now correctly tells the player when the guess is too high or too low.
+3. **Fixed invalid input handling.** Non-numeric values are rejected before they can affect the game state or attempt counting.
+4. **Fixed the attempt counter.** Attempts only increase for valid guesses, and the counter is reset correctly on a new game.
+5. **Reset the game state cleanly.** New game starts reset the `attempts`, `status`, `score`, and `history` values.
 
-## 📝 Document Your Experience
+## 📝 Project summary
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+This game is a number guessing app built with Streamlit. The goal is to guess the hidden number within the allowed attempts. The original version had several bugs: reversed hints, invalid string input, inconsistent attempt counting, and game state that did not reset correctly when starting a new game.
+
+We fixed the core logic and verified the behavior with pytest.
 
 ## 📸 Demo Walkthrough
 
-Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+1. Open the app and select a difficulty level.
+2. Enter a valid integer guess.
+3. Read the corrected hint: too high means the number should go lower, and too low means the number should go higher.
+4. Keep guessing until you match the secret number or run out of attempts.
+5. Start a new game to reset the score, attempts, and history.
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
-
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
+**Screenshot** *(optional)*: Add a screenshot of a completed successful round here.
 
 ## 🧪 Test Results
 
+```bash
+.venv/bin/python -m pytest -q
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+
+Result:
+
+```text
+4 passed in 0.00s
 ```
 
 ## 🚀 Stretch Features
 
-- [ ] [If you choose to complete Challenge 4, describe the Enhanced UI changes here — a screenshot is optional]
+- [x] Refactored game logic into `logic_utils.py`
+- [x] Added regression tests for invalid input and comparison logic
+- [ ] Additional UI polish or advanced game features (optional)
