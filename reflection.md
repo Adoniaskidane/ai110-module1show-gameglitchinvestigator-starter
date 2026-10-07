@@ -57,23 +57,35 @@ Document at least 3 bugs you found. Add rows as needed.
 - How did you decide whether a bug was really fixed?
   1, first I have restarted the application and tested
   2, verfied using AI if the issue is fixed and evaluated the ai response
+  3, Generated test cases to evalute the internal functionality and bug fixs.
 
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
-  
+  function: test_parse_guess_rejects_non_numeric_string
+  Answer: takes string and see if it reject the result
+
 - Did AI help you design or understand any tests? How?
+  yes I am able to generate specific test and I needed. instead of manually implementing it, I have utlized ai to generate by explicitly emphasising what test cases i need.
 
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
-
+  streamlit runs everying in our code and it controls it. It also use st.session_state to set data, preserve data, to control the ui and user interaction.
 ---
 
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
   - This could be a testing habit, a prompting strategy, or a way you used Git.
+
+  that fixing one bug at a time. allows me to document easily. use separate session for every bug.
+
 - What is one thing you would do differently next time you work with AI on a coding task?
+ 
+   every bug fix, i need to commit, missng multilpy layer of commit.
+
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+   
+   very much deep hands on, helps me learn how to keep human in the loop with ai to debug(understand the core issue), allow ai to guied how to fix it, generate code and review (for any unnecassary fix or halucination), then after fully understood the change approve and documents. make sure to inlcude test cases in the project because every code need to be tested.
